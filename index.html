@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>قائمة الحضور – علي ويارا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8933f;--gold-d:#9a7425;--gold-dd:#6e4f15;--bg:#f6eee0;--card:#fffaf1;--line:rgba(184,147,63,.35);--red:#a8483a;--ok:#7b8a3f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--gold-dd);font-family:'Tajawal',system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 60px}
+header{text-align:center;margin-bottom:22px}
+header h1{font-family:'Aref Ruqaa',serif;font-size:40px;margin:0;color:var(--gold-d);line-height:1.3}
+header h1 svg{width:22px;height:22px;vertical-align:middle;margin:0 8px}
+header p{margin:4px 0 0;color:var(--gold);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center}
+.st b{display:block;font-size:28px;color:var(--gold-d);line-height:1.1}
+.st span{font-size:13px;color:var(--gold)}
+.st.main{background:linear-gradient(160deg,#c9a24f,#9a7425);border:none}
+.st.main b,.st.main span{color:#fff}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.bar input{flex:1;min-width:180px;font:inherit;font-size:15px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--gold-dd);outline:none}
+.bar input:focus{border-color:var(--gold)}
+.tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.tabs button{font:inherit;font-size:14px;border:0;background:none;color:var(--gold-d);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--gold);color:#fff}
+.btn{font:inherit;font-size:14px;border:1px solid var(--gold);background:var(--card);color:var(--gold-d);padding:8px 14px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--gold);color:#fff}
+.btn svg{width:16px;height:16px}
+.list{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:grid;grid-template-columns:34px 1fr auto auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(184,147,63,.18)}
+.row:last-child{border-bottom:0}
+.row.hd{background:rgba(184,147,63,.1);font-size:13px;color:var(--gold-d);font-weight:700;padding:9px 16px}
+.n{color:var(--gold);font-size:13px;text-align:center}
+.nm{font-size:16px;font-weight:500;color:var(--gold-dd);word-break:break-word}
+.tm{font-size:12px;color:var(--gold);display:block;font-weight:400;margin-top:2px}
+.tag{font-size:13px;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.tag.y{background:rgba(123,138,63,.12);color:var(--ok)}
+.tag.x{background:rgba(168,72,58,.1);color:var(--red)}
+.g{min-width:44px;text-align:center;font-weight:700;font-size:16px;color:var(--gold-d)}
+.empty,.err{padding:40px 20px;text-align:center;color:var(--gold)}
+.err{color:var(--red);line-height:1.8}
+.foot{margin-top:12px;text-align:center;font-size:12px;color:var(--gold)}
+.spin{display:inline-block;width:18px;height:18px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:s 0.8s linear infinite;vertical-align:middle;margin-left:8px}
+@keyframes s{to{transform:rotate(360deg)}}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ok);margin-top:8px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(123,138,63,.5);animation:pl 1.6s infinite}
+.live.off{color:var(--red)}.live.off i{background:var(--red);animation:none}
+@keyframes pl{70%{box-shadow:0 0 0 7px rgba(123,138,63,0)}100%{box-shadow:0 0 0 0 rgba(123,138,63,0)}}
+.row.new{animation:nw 4s ease-out}
+@keyframes nw{0%,40%{background:rgba(184,147,63,.28)}100%{background:transparent}}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}header h1{font-size:32px}.row{grid-template-columns:26px 1fr auto auto;gap:8px;padding:11px 12px}}
+@media print{.bar,.foot{display:none}body{background:#fff}.list,.st{border-color:#ccc}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>علي<svg viewBox="-1 -1 26 24" aria-hidden="true"><path d="M12 21s-8.5-5.3-10.6-10.4C-.1 6.3 2.6 1.5 7 1.5c2.3 0 3.9 1.3 5 3 1.1-1.7 2.7-3 5-3 4.4 0 7.1 4.8 5.6 9.1C20.5 15.7 12 21 12 21z" fill="none" stroke="#b8933f" stroke-width="1.8"/></svg>يارا</h1>
+    <p>قائمة تأكيد الحضور</p>
+    <div class="live" id="live"><i></i><span>تحديث تلقائي</span></div>
+  </header>
+
+  <div class="stats">
+    <div class="st main"><b id="sTotal">–</b><span>إجمالي الحضور (أشخاص)</span></div>
+    <div class="st"><b id="sYes">–</b><span>ردود بالحضور</span></div>
+    <div class="st"><b id="sNo">–</b><span>اعتذارات</span></div>
+    <div class="st"><b id="sAll">–</b><span>كل الردود</span></div>
+  </div>
+
+  <div class="bar">
+    <input id="q" type="search" placeholder="ابحث عن اسم…">
+    <div class="tabs" role="tablist">
+      <button data-f="all" class="on">الكل</button>
+      <button data-f="yes">الحضور</button>
+      <button data-f="no">المعتذرين</button>
+    </div>
+  </div>
+  <div class="bar">
+    <button class="btn" id="csv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg>تنزيل Excel</button>
+    <button class="btn" onclick="print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg>طباعة</button>
+    <span style="flex:1"></span>
+    <select id="sort" class="btn" style="padding:8px 12px">
+      <option value="new">الأحدث أولاً</option>
+      <option value="old">الأقدم أولاً</option>
+      <option value="name">حسب الاسم</option>
+      <option value="guests">حسب العدد</option>
+    </select>
+  </div>
+
+  <div class="list" id="list"><div class="empty"><span class="spin"></span>جاري التحميل…</div></div>
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+var CFG = {
+  apiKey: "AIzaSyBxzEKOQ8NrNqgeJp1XePLEsbEKXdXHla4",
+  projectId: "my-wedding-cards",
+  collection: "rsvp_ali_yara"
+};
+var all = [], filter = "all", seen = null, fresh = {}, busy = false;
+var $ = function(id){ return document.getElementById(id); };
+
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function val(f){ if(!f) return null; if("stringValue" in f) return f.stringValue; if("integerValue" in f) return +f.integerValue; if("doubleValue" in f) return +f.doubleValue; if("booleanValue" in f) return f.booleanValue; if("timestampValue" in f) return f.timestampValue; return null; }
+function fmt(t){ if(!t) return ""; var d=new Date(t); return d.toLocaleDateString("ar-EG",{day:"numeric",month:"long",timeZone:"Asia/Dubai"})+" – "+d.toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit",timeZone:"Asia/Dubai"}); }
+
+function load(){
+  if(busy) return; busy=true;
+  if(!all.length) $("list").innerHTML='<div class="empty"><span class="spin"></span>جاري التحميل…</div>';
+  var tmp=[];
+  var base="https://firestore.googleapis.com/v1/projects/"+encodeURIComponent(CFG.projectId)+"/databases/(default)/documents/"+encodeURIComponent(CFG.collection)+"?pageSize=300&key="+encodeURIComponent(CFG.apiKey);
+  (function page(tok){
+    fetch(base+(tok?"&pageToken="+encodeURIComponent(tok):""))
+    .then(function(r){ if(!r.ok) throw r.status; return r.json(); })
+    .then(function(j){
+      (j.documents||[]).forEach(function(d){
+        var f=d.fields||{};
+        tmp.push({name:val(f.name)||"—",attending:val(f.attending)===true,guests:val(f.guests)||0,createdAt:val(f.createdAt)||d.createTime});
+      });
+      if(j.nextPageToken) page(j.nextPageToken); else {
+        busy=false;
+        if(seen){ tmp.forEach(function(x){ if(!seen[x.name]) fresh[x.name]=1; }); }
+        seen={}; tmp.forEach(function(x){ seen[x.name]=1; });
+        all=tmp; render(); fresh={};
+        $("live").className="live"; $("live").lastChild.textContent="تحديث تلقائي"; $("foot").textContent="آخر تحديث: "+new Date().toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit",timeZone:"Asia/Dubai"}); }
+    })
+    .catch(function(e){
+      busy=false;
+      if(all.length){ $("live").className="live off"; $("live").lastChild.textContent="انقطع الاتصال – بنحاول مرة ثانية"; return; }
+      $("list").innerHTML='<div class="err">تعذّر تحميل القائمة'+(e===403||e===401?'<br>قاعدة البيانات لا تسمح بقراءة القائمة. يجب السماح بالقراءة (list) لمجموعة <b>'+esc(CFG.collection)+'</b> من إعدادات Firebase.':'<br>تأكد من الاتصال بالإنترنت ثم اضغط تحديث.')+'</div>';
+    });
+  })();
+}
+
+function render(){
+  var yes=all.filter(function(x){return x.attending;});
+  $("sTotal").textContent=yes.reduce(function(a,x){return a+x.guests;},0);
+  $("sYes").textContent=yes.length;
+  $("sNo").textContent=all.length-yes.length;
+  $("sAll").textContent=all.length;
+
+  var q=$("q").value.trim().toLowerCase();
+  var rows=all.filter(function(x){
+    if(filter==="yes"&&!x.attending) return false;
+    if(filter==="no"&&x.attending) return false;
+    return !q||x.name.toLowerCase().indexOf(q)>-1;
+  });
+  var s=$("sort").value;
+  rows.sort(function(a,b){
+    if(s==="name") return a.name.localeCompare(b.name,"ar");
+    if(s==="guests") return b.guests-a.guests;
+    var d=new Date(a.createdAt)-new Date(b.createdAt);
+    return s==="old"?d:-d;
+  });
+  if(!rows.length){ $("list").innerHTML='<div class="empty">'+(all.length?"لا يوجد نتائج":"لا يوجد ردود بعد")+'</div>'; return; }
+  $("list").innerHTML='<div class="row hd"><span class="n">#</span><span>الاسم</span><span>الرد</span><span class="g" style="font-size:13px">العدد</span></div>'+
+    rows.map(function(x,i){
+      return '<div class="row'+(fresh[x.name]?' new':'')+'"><span class="n">'+(i+1)+'</span><span class="nm">'+esc(x.name)+'<span class="tm">'+esc(fmt(x.createdAt))+'</span></span>'+
+        (x.attending?'<span class="tag y">سيحضر</span>':'<span class="tag x">معتذر</span>')+
+        '<span class="g">'+(x.attending?x.guests:"–")+'</span></div>';
+    }).join("");
+}
+
+function csv(){
+  var lines=[["الاسم","الرد","العدد","وقت الرد"]].concat(all.map(function(x){
+    return [x.name,x.attending?"سيحضر":"معتذر",x.attending?x.guests:0,x.createdAt?new Date(x.createdAt).toLocaleString("en-GB",{timeZone:"Asia/Dubai"}):""];
+  }));
+  var txt="﻿"+lines.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(",");}).join("\r\n");
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([txt],{type:"text/csv;charset=utf-8"}));
+  a.download="حضور-علي-ويارا.csv"; a.click();
+}
+
+[].forEach.call(document.querySelectorAll(".tabs button"),function(b){
+  b.onclick=function(){ filter=b.getAttribute("data-f"); [].forEach.call(document.querySelectorAll(".tabs button"),function(x){x.classList.toggle("on",x===b);}); render(); };
+});
+$("q").oninput=render; $("sort").onchange=render;
+$("csv").onclick=csv;
+load();
+setInterval(function(){ if(!document.hidden) load(); },10000);
+document.addEventListener("visibilitychange",function(){ if(!document.hidden) load(); });
+</script>
+</body>
+</html>
